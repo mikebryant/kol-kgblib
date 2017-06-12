@@ -8,12 +8,15 @@ First, install it by running this command in KoLmafia's graphical CLI:
 svn checkout https://github.com/mikebryant/kol-kgblib/branches/master/src/
 ```
 
-Then, run `kgblib.ash` to automatically unlock and use:
+Then, run `kgblib.ash` to automatically unlock:
 - First light
 - Crank
 - Buttons
 - Drawers
-- Flywheel
+- Martini hose
+and use:
+- Drawers
+- Crank the flywheel to get 11 extra clicks
 
 To update the script, run this command in the graphical CLI:
 

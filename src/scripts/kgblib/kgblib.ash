@@ -8,6 +8,7 @@ boolean crank_is_unlocked;
 boolean buttons_are_unlocked;
 boolean left_drawer_is_unlocked;
 boolean right_drawer_is_unlocked;
+boolean martini_hose_is_unlocked;
 
 string dial_letters = "0123456789a";
 
@@ -35,7 +36,8 @@ void debug_state() {
     ", crank: " + (crank_is_unlocked ? "unlocked" : "unavailable") +
     ", buttons: " + (buttons_are_unlocked ? "unlocked" : "unavailable") +
     ", left drawer: " + (left_drawer_is_unlocked ? "unlocked" : "unavailable") +
-    ", right drawer: " + (right_drawer_is_unlocked ? "unlocked" : "unavailable")
+    ", right drawer: " + (right_drawer_is_unlocked ? "unlocked" : "unavailable") +
+    ", martini hose: " + (martini_hose_is_unlocked ? "unlocked" : "unavailable")
   );
 }
 
@@ -66,6 +68,8 @@ void parse_state() {
 
   left_drawer_is_unlocked = (page.index_of("action=kgb_drawer2") > -1);
   right_drawer_is_unlocked = (page.index_of("action=kgb_drawer1") > -1);
+
+  martini_hose_is_unlocked = (page.index_of("action=kgb_dispenser") > -1);
 
   return;
 }
@@ -250,12 +254,21 @@ void right_drawer() {
   return;
 }
 
+void unlock_martini_hose() {
+  if (martini_hose_is_unlocked) return;
+  wind_dials(0, 0, 0, 0, 0, 0);
+  handle_up();
+  left_actuator();
+  parse_state();
+}
+
 void kgb_auto() {
   unlock_light_one();
   unlock_crank();
   unlock_buttons();
   unlock_drawers();
   charge_flywheel();
+  unlock_martini_hose();
 
   left_drawer();
   right_drawer();
