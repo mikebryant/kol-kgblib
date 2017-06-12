@@ -5,7 +5,7 @@ Kingdom of Loathing - Kremlin's Greatest Briefcase library
 First, install it by running this command in KoLmafia's graphical CLI:
 
 ```
-svn checkout https://github.com/mikebryant/kol-kgblib/branches/master/
+svn checkout https://github.com/mikebryant/kol-kgblib/branches/master/src/
 ```
 
 Then, run `kgblib.ash` to automatically unlock and use:
